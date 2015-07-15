@@ -119,7 +119,7 @@ Presenter.prototype = {
   /**
    * Announce something. Typically an app state change.
    */
-  announce: function announce(aAnnouncement) {}, // jshint ignore:line
+  announce: function announce(aAnnouncement, aOptions) {}, // jshint ignore:line
 
 
   /**
@@ -613,12 +613,13 @@ B2GPresenter.prototype.liveRegion = function B2GPresenter_liveRegion(aContext,
   };
 
 B2GPresenter.prototype.announce =
-  function B2GPresenter_announce(aAnnouncement) {
+  function B2GPresenter_announce(aAnnouncement, aOptions) {
     return {
       type: this.type,
       details: {
         eventType: 'announcement',
-        data: aAnnouncement
+        data: aAnnouncement,
+        options: aOptions
       }
     };
   };
@@ -731,10 +732,10 @@ this.Presentation = { // jshint ignore:line
     return [p.editingModeChanged(aIsEditing) for each (p in this.presenters)]; // jshint ignore:line
   },
 
-  announce: function Presentation_announce(aAnnouncement) {
+  announce: function Presentation_announce(aAnnouncement, aOptions) {
     // XXX: Typically each presenter uses the UtteranceGenerator,
     // but there really isn't a point here.
-    return [p.announce(UtteranceGenerator.genForAnnouncement(aAnnouncement)) // jshint ignore:line
+    return [p.announce(UtteranceGenerator.genForAnnouncement(aAnnouncement), aOptions) // jshint ignore:line
       for each (p in this.presenters)]; // jshint ignore:line
   },
 

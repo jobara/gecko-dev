@@ -38,7 +38,8 @@
       ok(AccessFu._enabled, "AccessFu was enabled again.");
       AccessFuTest.once({
         "eventType": "announcement",
-        "data": [{string: "screenReaderStopped"}]
+        "data": [{string: "screenReaderStopped"}],
+        "options": {force: true}
       }, AccessFuTest.finish);
       // XXX: Bug 978076 - test stop with SettingsManager.
       //navigator.mozSettings.createLock().set(

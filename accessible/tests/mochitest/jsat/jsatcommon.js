@@ -78,7 +78,7 @@ var AccessFuTest = {
       if (!data) {
         return;
       }
-      isDeeply(data.details, aWaitForData, "Data is correct");
+      isDeeply(data.details, aWaitForData, 'Data is correct');
       aListener.apply(listener);
     };
     Services.obs.addObserver(listener, 'accessibility-output', false);

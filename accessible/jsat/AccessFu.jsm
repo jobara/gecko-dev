@@ -164,7 +164,7 @@ this.AccessFu = { // jshint ignore:line
     Utils.win.document.removeChild(this.stylesheet.get());
 
     if (Utils.MozBuildApp !== 'mobile/android') {
-      this.announce('screenReaderStopped');
+      this.announce('screenReaderStopped', { force: true });
     }
 
     for (let mm of Utils.AllMessageManagers) {
@@ -387,8 +387,9 @@ this.AccessFu = { // jshint ignore:line
     mm.sendAsyncMessage('AccessFu:AutoMove', aOptions);
   },
 
-  announce: function announce(aAnnouncement) {
-    this._output(Presentation.announce(aAnnouncement), Utils.CurrentBrowser);
+  announce: function announce(aAnnouncement, aOptions) {
+    this._output(Presentation.announce(aAnnouncement, aOptions),
+      Utils.CurrentBrowser);
   },
 
   // So we don't enable/disable twice
